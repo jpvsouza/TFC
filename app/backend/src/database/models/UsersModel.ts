@@ -1,47 +1,40 @@
-import { Model, INTEGER, BOOLEAN } from 'sequelize';
+import { Model, INTEGER, STRING } from 'sequelize';
 import db from '.';
-// import OtherModel from './OtherModel';
 
-class Matches extends Model {
+class Users extends Model {
   id!: number;
-  homeTeam!: number;
-  homeTeamGoals!: number;
-  awayTeam!: number;
-  awayTeamGoals!: number;
-  inProgress!: boolean;
+  username!: string;
+  role!: string;
+  email!: string;
+  password!: string;
 }
 
-Matches.init({
+Users.init({
   id: {
     type: INTEGER,
     allowNull: false,
     primaryKey: true,
     autoIncrement: true,
   },
-  homeTeam: {
-    type: INTEGER,
+  username: {
+    type: STRING(50),
     allowNull: false,
   },
-  homeTeamGoals: {
-    type: INTEGER,
+  role: {
+    type: STRING(50),
     allowNull: false,
   },
-  awayTeam: {
-    type: INTEGER,
+  email: {
+    type: STRING(50),
     allowNull: false,
   },
-  awayTeamGoals: {
-    type: INTEGER,
-    allowNull: false,
-  },
-  inProgress: {
-    type: BOOLEAN,
+  password: {
+    type: STRING(50),
     allowNull: false,
   },
 }, {
-  underscored: true,
   sequelize: db,
-  modelName: 'matches',
+  modelName: 'users',
   timestamps: false,
 });
 
@@ -56,4 +49,4 @@ Matches.init({
 // Example.hasMany(OtherModel, { foreignKey: 'campoC', as: 'campoEstrangeiroC' });
 // Example.hasMany(OtherModel, { foreignKey: 'campoD', as: 'campoEstrangeiroD' });
 
-export default Matches;
+export default Users;
