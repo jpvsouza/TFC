@@ -3,7 +3,7 @@ import User from '../database/models/UsersModel';
 
 const model = User;
 
-export default async function loginValido(req: Request, res: Response, next: NextFunction) {
+export default async function validaLogin(req: Request, res: Response, next: NextFunction) {
   const { email, password } = req.body;
   const REGEX = /\S+@\S+\.\S+/;
 

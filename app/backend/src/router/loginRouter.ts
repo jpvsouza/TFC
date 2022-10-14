@@ -1,11 +1,10 @@
 import { Router } from 'express';
-import loginControler from '../controller/loginController';
-import Login from '../database/models/UsersModel';
-import LoginService from '../service/User';
+import ValidaLogin from '../middlewares/validaLogin';
+import LoginControler from '../controller/loginController';
 
 const router = Router();
-const loginController = require('../')
+const loginController = new LoginControler();
 
-router.post('/', (req, res) => loginControler.);
+router.post('/', ValidaLogin, loginController.login);
 
 export default router;
