@@ -2,15 +2,15 @@ import ITeamWithId from '../interfaces/ITeamWithId';
 import Team from '../database/models/TeamsModel';
 
 export default class TeamService {
-  private model = Team;
+  private _model = Team;
 
-  public async getAll(): Promise<ITeamWithId[] | null> {
-    const result = await this.model.findAll();
+  public async getAll(): Promise<ITeamWithId[]> {
+    const result = await this._model.findAll();
     return result;
   }
 
   public async getById(id: string): Promise<ITeamWithId | null> {
-    const result = await this.model.findByPk(id);
+    const result = await this._model.findByPk(id);
     return result;
   }
 }
