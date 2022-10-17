@@ -1,32 +1,21 @@
-// import IService from 'src/interfaces/IService';
-// import { IUser } from 'src/interfaces/IUser';
-// import { IModel } from 'src/interfaces/IModel';
+import newToken from '../auth/token';
+import IUser from '../interfaces/IUser';
+import UserModel from '../database/models/UsersModel';
 
-// export default class UserService implements IService<IUser> {
-//   private _user: IModel<IUser>;
-//   constructor(model: IModel<IUser>) {
-//     this._user = model;
-//   }
+export default class UserService {
+  private _userModel = UserModel;
 
-//   public async create(obj: IUser): Promise<IUser> {
-//     return this._user.create(obj);
-//   }
-// }
+  public login = async (dataUser: IUser): Promise<string> => {
+    // const user = await this._userModel.findOne({ where: { email: dataUser.email } });
+    const token = newToken({ email: dataUser.email });
 
-import { sign } from 'jsonwebtoken';
-import IUserLogin from '../interfaces/IUserLogin';
-import User from '../database/models/UsersModel';
-import 'dotenv/config';
-
-export default class LoginService {
-  private model = User;
-  constructor() {
-    this.model = new User();
-  }
-
-  public async login(dadosLogin: IUserLogin): Promise<string> {
-    const { email } = dadosLogin;
-    const token = sign({ email }, process.env.JWT_Secret as string, { expiresIn: '7d'});
     return token;
-  }
+  };
+
+  // public getRole = async (dataUser: IUser): Promise<string> => {
+  //   const user = await this._userModel.findOne({ where: { email: dataUser.email } });
+  //   const task = { role: user?.role };
+
+  //   if (user) return task;
+  // };
 }

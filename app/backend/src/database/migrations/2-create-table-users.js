@@ -8,19 +8,19 @@ module.exports = {
         autoIncrement: true,
       },
       username: {
-        type: Sequelize.STRING(50),
+        type: Sequelize.STRING,
         allowNull: false,
       },
       role: {
-        type: Sequelize.STRING(50),
+        type: Sequelize.STRING,
         allowNull: false,
       },
       email: {
-        type: Sequelize.STRING(50),
+        type: Sequelize.STRING,
         allowNull: false,
       },
       password: {
-        type: Sequelize.STRING(50),
+        type: Sequelize.STRING,
         allowNull: false,
       },
     });

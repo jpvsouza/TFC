@@ -3,26 +3,25 @@ import db from '.';
 // import OtherModel from './OtherModel';
 
 class Teams extends Model {
-  id!: number;
-  teamName!: string;
+  id: number;
+  teamName: string;
 }
 
 Teams.init({
   id: {
     type: INTEGER,
-    allowNull: false,
     primaryKey: true,
     autoIncrement: true,
   },
   teamName: {
-    type: STRING(50),
+    type: STRING,
     allowNull: false,
   },
 }, {
   underscored: true,
   sequelize: db,
-  modelName: 'teams',
   timestamps: false,
+  // modelName: 'teams',
 });
 
 /**

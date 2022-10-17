@@ -1,6 +1,6 @@
-import { IUserLogin } from './IUserLogin';
+import IUserLogin from './IUserLogin';
 
-export interface IUser extends IUserLogin {
+export default interface IUser extends IUserLogin {
   username: string;
   role: string;
 }
