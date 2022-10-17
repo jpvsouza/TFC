@@ -22,4 +22,10 @@ export default class MatchService {
     const created = await this._matchModel.create(match);
     return created;
   };
+
+  // public finishMatch = async (id: number) => {
+  //   const match = this._matchModel.getById(id);
+  //   if (!match) throw ServiceError.matchNotFound;
+  //   await this._matchModel.finishMatch(id);
+  // }
 }
