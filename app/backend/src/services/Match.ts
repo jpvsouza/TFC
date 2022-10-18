@@ -1,3 +1,4 @@
+import { MatchGoalsAttributes } from '../@types';
 import IMatch from '../interfaces/IMatch';
 import ServiceError from '../errors/ServiceError';
 import Match from '../database/models/MatchesModel';
@@ -23,9 +24,15 @@ export default class MatchService {
     return created;
   };
 
-  // public finishMatch = async (id: number) => {
-  //   const match = this._matchModel.getById(id);
-  //   if (!match) throw ServiceError.matchNotFound;
-  //   await this._matchModel.finishMatch(id);
-  // }
+  public finishMatch = async (id: number) => {
+    const match = this._matchModel.getById(id);
+    if (!match) throw ServiceError.matchNotFound;
+    await this._matchModel.finishMatch(id);
+  };
+
+  public updateGoals = async (id: number, goals: MatchGoalsAttributes) => {
+    const match = await this._matchModel.getById(id);
+    if (!match) throw ServiceError.matchNotFound;
+    await this._matchModel.updateGoals(id, goals);
+  };
 }
