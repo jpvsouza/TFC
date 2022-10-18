@@ -2,7 +2,7 @@ import UserModel from '../models/UserModel';
 import ServiceError from '../errors/ServiceError';
 import User from '../database/models/UsersModel';
 import LoginDTO from '../dtos/LoginDTO';
-import BCript from '../middlewares/BCrypt';
+import BCript from '../utils/BCrypt';
 
 export default class LoginService {
   private _model = new UserModel();

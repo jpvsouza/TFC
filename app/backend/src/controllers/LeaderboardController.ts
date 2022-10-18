@@ -1,5 +1,5 @@
 import { RequestHandler } from 'express';
-import { leaderboardSorter } from '../middlewares/LeaderboardSorter';
+import { leaderboardSorter } from '../utils/LeaderboardSorter';
 import LeaderBoardService from '../services/LeaderBoard';
 
 export default class LeaderboardController {

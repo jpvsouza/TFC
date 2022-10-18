@@ -1,6 +1,6 @@
 import { RequestHandler } from 'express';
 import ValidationError from '../errors/ValitationError';
-import Token from './Token';
+import Token from '../utils/Token';
 import { JwtPayload } from '../@types';
 
 const authenticate: RequestHandler = async (req, _res, next) => {

@@ -1,5 +1,5 @@
 import { RequestHandler } from 'express';
-import Token from '../middlewares/Token';
+import Token from '../utils/Token';
 import { LoginAttributes } from '../@types';
 import LoginDTO from '../dtos/LoginDTO';
 import LoginService from '../services/User';
