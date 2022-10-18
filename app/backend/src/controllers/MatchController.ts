@@ -1,8 +1,7 @@
 import { RequestHandler } from 'express';
-import MatchService from '../services/Match';
-// import IMatch from '../interfaces/IMatch';
-import MatchDTO from '../dtos/MatchDTO';
 import { MatchAttributes } from '../@types';
+import MatchDTO from '../dtos/MatchDTO';
+import MatchService from '../services/Match';
 
 export default class MatchController {
   private _service = new MatchService();
