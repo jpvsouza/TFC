@@ -9,7 +9,9 @@ export const loginSchema = Joi.object({
   password: Joi.string().min(6).required().messages({
     'string.empty': MISSING_FIELD,
   }),
-}).messages({ 'any.required': MISSING_FIELD });
+}).messages({
+  'any.required': MISSING_FIELD,
+});
 
 export const matchSchema = Joi.object({
   homeTeam: Joi.number().required(),
@@ -17,4 +19,6 @@ export const matchSchema = Joi.object({
   homeTeamGoals: Joi.number().required(),
   awayTeamGoals: Joi.number().required(),
   inProgress: Joi.boolean(),
-}).messages({ 'any.required': MISSING_FIELD });
+}).messages({
+  'any.required': MISSING_FIELD,
+});
