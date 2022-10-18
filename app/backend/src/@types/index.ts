@@ -11,3 +11,7 @@ export type MatchAttributes = ModelAttributes & MatchGoalsAttributes & {
   homeTeamGoals: number;
   awayTeamGoals: number;
 };
+
+export type JwtPayload = {
+  id: string;
+};
