@@ -1,5 +1,5 @@
 import { MatchAttributes, MatchGoalsAttributes } from '../@types';
-import Match from '../database/models/MatchesModel';
+import Match from '../database/models/Match';
 import { matchIncudeTeams } from './FindOptions';
 
 export default class MatchModel {

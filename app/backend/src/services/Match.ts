@@ -1,9 +1,9 @@
 import { MatchGoalsAttributes } from '../@types';
-import IMatch from '../interfaces/IMatch';
 import ServiceError from '../errors/ServiceError';
-import Match from '../database/models/MatchesModel';
+import Match from '../database/models/Match';
 import MatchModel from '../models/MatchModel';
 import TeamModel from '../models/TeamModel';
+import MatchDTO from '../dtos/MatchDTO';
 
 export default class MatchService {
   private _matchModel = new MatchModel();
@@ -11,8 +11,9 @@ export default class MatchService {
 
   public getAll = async (): Promise<Match[]> => this._matchModel.getAll();
 
-  public create = async (match: IMatch) => {
-    const dataTeams = [match.awayTeam, match.homeTeam];
+  public create = async (match: MatchDTO) => {
+    const dataMatch = match.getData();
+    const dataTeams = [dataMatch.awayTeam, dataMatch.homeTeam];
 
     const teams = await this._teamModel.getAllWithIds(dataTeams);
 
@@ -20,7 +21,7 @@ export default class MatchService {
 
     if (teams.length !== dataTeams.length) throw ServiceError.teamNotFound;
 
-    const created = await this._matchModel.create(match);
+    const created = await this._matchModel.create(dataMatch);
     return created;
   };
 

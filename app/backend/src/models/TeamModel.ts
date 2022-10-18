@@ -1,4 +1,4 @@
-import Team from '../database/models/TeamsModel';
+import Team from '../database/models/Team';
 
 export default class TeamModel {
   private _sequelizeModel = Team;

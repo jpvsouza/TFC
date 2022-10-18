@@ -8,8 +8,8 @@ export type ModelAttributes = {
 };
 
 export type MatchAttributes = ModelAttributes & MatchGoalsAttributes & {
-  homeTeamGoals: number;
-  awayTeamGoals: number;
+  homeTeam: number;
+  awayTeam: number;
 };
 
 export type JwtPayload = {

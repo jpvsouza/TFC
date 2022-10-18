@@ -1,5 +1,5 @@
 import { FindOptions } from 'sequelize';
-import Team from '../database/models/TeamsModel';
+import Team from '../database/models/Team';
 
 export const matchIncudeTeams: FindOptions = {
   include: [

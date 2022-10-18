@@ -1,6 +1,8 @@
 import { RequestHandler } from 'express';
 import MatchService from '../services/Match';
-import IMatch from '../interfaces/IMatch';
+// import IMatch from '../interfaces/IMatch';
+import MatchDTO from '../dtos/MatchDTO';
+import { MatchAttributes } from '../@types';
 
 export default class MatchController {
   private _service = new MatchService();
@@ -20,7 +22,7 @@ export default class MatchController {
   };
 
   public create: RequestHandler = async (req, res) => {
-    const match: IMatch = req.body;
+    const match = new MatchDTO(req.body as MatchAttributes);
     const newMatch = await this._service.create(match);
     res.status(201).json(newMatch);
   };

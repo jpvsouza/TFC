@@ -1,5 +1,5 @@
 import ITeamWithId from '../interfaces/ITeamWithId';
-import Team from '../database/models/TeamsModel';
+import Team from '../database/models/Team';
 
 export default class TeamService {
   private _model = Team;
