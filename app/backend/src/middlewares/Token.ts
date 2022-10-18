@@ -5,8 +5,8 @@ export default class Token {
 
   private static option: SignOptions = { algorithm: 'HS256', expiresIn: '7d' };
 
-  public static create(id: number) {
-    return sign({ id }, this.secret, this.option);
+  public static create(userId: number) {
+    return sign({ userId }, this.secret, this.option);
   }
 
   public static validate(token: string) {

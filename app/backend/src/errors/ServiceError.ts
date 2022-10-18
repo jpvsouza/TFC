@@ -1,7 +1,7 @@
 import ExpressError from './ExpressError';
 
 export default class ServiceError extends ExpressError {
-  public static readonly incorrectLogin = new ServiceError(401, 'incorrect email or password');
+  public static readonly incorrectLogin = new ServiceError(401, 'Incorrect email or password');
 
   public static readonly userNotFound = new ServiceError(404, 'User not found');
 

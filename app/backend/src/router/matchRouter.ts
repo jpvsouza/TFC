@@ -1,6 +1,6 @@
 import { Router } from 'express';
 import MatchController from '../controllers/MatchController';
-import authenticate from '../middlewares/auth';
+import authenticate from '../middlewares/authenticate';
 
 const router = Router();
 

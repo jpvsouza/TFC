@@ -4,9 +4,7 @@ import Token from './Token';
 import { JwtPayload } from '../@types';
 
 const authenticate: RequestHandler = async (req, _res, next) => {
-  const {
-    headers: { authorization },
-  } = req;
+  const { headers: { authorization } } = req;
 
   if (!authorization) return next(ValidationError.tokenNotFound);
 
