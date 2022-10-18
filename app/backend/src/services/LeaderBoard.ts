@@ -33,4 +33,19 @@ export default class LeaderBoardService {
         ),
     );
   };
+
+  public getAwayResults = async (): Promise<TeamStatus[]> => {
+    const teams = await this._teamModel.getAll();
+    const matches = await this._matchModel.getAll();
+
+    return teams.map(
+      (team) =>
+        new TeamStatus(
+          team,
+          matches
+            .filter((match) => !match.inProgress)
+            .filter((match) => match.awayTeam === team.id),
+        ),
+    );
+  };
 }
