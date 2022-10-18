@@ -1,11 +1,11 @@
 import { MatchAttributes, MatchGoalsAttributes } from '../@types';
 import Match from '../database/models/Match';
-import { matchIncudeTeams } from './FindOptions';
+import { matchIncludeTeams } from './FindOptions';
 
 export default class MatchModel {
   private _sequelizeModel = Match;
 
-  public getAll = async (): Promise<Match[]> => this._sequelizeModel.findAll(matchIncudeTeams);
+  public getAll = async (): Promise<Match[]> => this._sequelizeModel.findAll(matchIncludeTeams);
 
   public getById = async (id: number): Promise<Match | null> => this._sequelizeModel.findByPk(id);
 

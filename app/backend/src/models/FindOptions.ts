@@ -1,7 +1,7 @@
 import { FindOptions } from 'sequelize';
 import Team from '../database/models/Team';
 
-export const matchIncudeTeams: FindOptions = {
+export const matchIncludeTeams: FindOptions = {
   include: [
     {
       model: Team,
@@ -16,4 +16,6 @@ export const matchIncudeTeams: FindOptions = {
   ],
 };
 
-export default { matchIncudeTeams };
+export default {
+  matchIncludeTeams,
+};
