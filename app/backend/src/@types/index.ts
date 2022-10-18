@@ -15,3 +15,8 @@ export type MatchAttributes = ModelAttributes & MatchGoalsAttributes & {
 export type JwtPayload = {
   id: string;
 };
+
+export type LoginAttributes = {
+  email: string;
+  password: string;
+};

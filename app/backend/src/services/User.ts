@@ -1,21 +1,24 @@
-import newToken from '../auth/token';
-import IUser from '../interfaces/IUser';
-import UserModel from '../database/models/UsersModel';
+import UserModel from '../models/UserModel';
+import ServiceError from '../errors/ServiceError';
+import User from '../database/models/UsersModel';
+import LoginDTO from '../dtos/LoginDTO';
+import BCript from '../middlewares/BCrypt';
 
-export default class UserService {
-  private _userModel = UserModel;
+export default class LoginService {
+  private _model = new UserModel();
 
-  public login = async (dataUser: IUser): Promise<string> => {
-    // const user = await this._userModel.findOne({ where: { email: dataUser.email } });
-    const token = newToken({ email: dataUser.email });
+  public findByData = async (loginDTO: LoginDTO): Promise<User> => {
+    const { email, password } = loginDTO.getData();
+    const user = await this._model.getByEmail(email);
 
-    return token;
+    if (!user || !BCript.validate(password, user.password)) throw ServiceError.incorrectLogin;
+
+    return user;
   };
 
-  // public getRole = async (dataUser: IUser): Promise<string> => {
-  //   const user = await this._userModel.findOne({ where: { email: dataUser.email } });
-  //   const task = { role: user?.role };
-
-  //   if (user) return task;
-  // };
+  public findById = async (userId: number): Promise<User> => {
+    const user = await this._model.getById(userId);
+    if (!user) throw ServiceError.userNotFound;
+    return user;
+  };
 }
