@@ -1,15 +1,15 @@
-import { Model, INTEGER, STRING } from 'sequelize';
+import { STRING, Model, INTEGER } from 'sequelize';
 import db from '.';
 
-class Users extends Model {
+class User extends Model {
   id: number;
   username: string;
-  role: string;
   email: string;
+  role: string;
   password: string;
 }
 
-Users.init({
+User.init({
   id: {
     type: INTEGER,
     primaryKey: true,
@@ -19,11 +19,11 @@ Users.init({
     type: STRING,
     allowNull: false,
   },
-  role: {
+  email: {
     type: STRING,
     allowNull: false,
   },
-  email: {
+  role: {
     type: STRING,
     allowNull: false,
   },
@@ -35,7 +35,6 @@ Users.init({
   underscored: true,
   sequelize: db,
   timestamps: false,
-  // modelName: 'users',
 });
 
-export default Users;
+export default User;
