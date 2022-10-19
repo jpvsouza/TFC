@@ -12,7 +12,7 @@ chai.use(chaiHttp);
 
 const { expect, request } = chai;
 
-describe('Testes da rota /teams.', () => {
+describe('Teste da rota /teams.', () => {
   afterEach(()=> { sinon.restore(); });
 
   it('GET retorna uma lista com todos os times.', async () => {

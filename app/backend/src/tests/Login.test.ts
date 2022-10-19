@@ -12,7 +12,7 @@ chai.use(chaiHttp);
 
 const { expect, request } = chai;
 
-describe('Testes da rota /login.', () => {
+describe('Teste da rota /login.', () => {
   const token = Token.createMock(dbAdminResult.id);
 
   afterEach(()=> { sinon.restore(); });
