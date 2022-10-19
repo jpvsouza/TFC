@@ -1,10 +1,24 @@
+export type ModelAttributes = {
+  id: number;
+};
+
+export type LoginAttributes = {
+  email: string;
+  password: string;
+};
+
+export type UserAttributes = ModelAttributes & LoginAttributes & {
+  username: string;
+  role: string;
+};
+
+export type TeamAttributes = ModelAttributes & {
+  teamName: string;
+};
+
 export type MatchGoalsAttributes = {
   homeTeamGoals: number;
   awayTeamGoals: number;
-};
-
-export type ModelAttributes = {
-  id: number;
 };
 
 export type MatchAttributes = ModelAttributes & MatchGoalsAttributes & {
@@ -17,12 +31,7 @@ export type JwtPayload = {
   id: string;
 };
 
-export type LoginAttributes = {
-  email: string;
-  password: string;
-};
-
-export type LeaderBoardProperties = {
+export type LeaderboardProperties = {
   name: string,
   totalPoints: number,
   totalGames: number,
@@ -33,13 +42,4 @@ export type LeaderBoardProperties = {
   goalsOwn: number,
   goalsBalance: number,
   efficiency: string,
-};
-
-export type UserAttributes = ModelAttributes & LoginAttributes & {
-  username: string;
-  role: string;
-};
-
-export type TeamAttributes = ModelAttributes & {
-  teamName: string;
 };
