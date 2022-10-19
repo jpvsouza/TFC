@@ -1,19 +1,19 @@
 import { MatchGoalsAttributes } from '../@types';
 import ServiceError from '../errors/ServiceError';
+import MatchDTO from '../dtos/MatchDTO';
 import Match from '../database/models/Match';
 import MatchModel from '../models/MatchModel';
 import TeamModel from '../models/TeamModel';
-import MatchDTO from '../dtos/MatchDTO';
 
-export default class MatchService {
+class MatchService {
   private _matchModel = new MatchModel();
   private _teamModel = new TeamModel();
 
   public getAll = async (): Promise<Match[]> => this._matchModel.getAll();
 
   public create = async (match: MatchDTO) => {
-    const dataMatch = match.getData();
-    const dataTeams = [dataMatch.awayTeam, dataMatch.homeTeam];
+    const matchData = match.getData();
+    const dataTeams = [matchData.awayTeam, matchData.homeTeam];
 
     const teams = await this._teamModel.getAllWithIds(dataTeams);
 
@@ -21,19 +21,21 @@ export default class MatchService {
 
     if (teams.length !== dataTeams.length) throw ServiceError.teamNotFound;
 
-    const created = await this._matchModel.create(dataMatch);
+    const created = await this._matchModel.create(matchData);
     return created;
   };
 
-  public finishMatch = async (id: number) => {
-    const match = this._matchModel.getById(id);
+  public finishMatch = async (matchId: number) => {
+    const match = await this._matchModel.getById(matchId);
     if (!match) throw ServiceError.matchNotFound;
-    await this._matchModel.finishMatch(id);
+    await this._matchModel.finishMatch(matchId);
   };
 
-  public updateGoals = async (id: number, goals: MatchGoalsAttributes) => {
-    const match = await this._matchModel.getById(id);
+  public updateGoals = async (matchId: number, goals: MatchGoalsAttributes) => {
+    const match = await this._matchModel.getById(matchId);
     if (!match) throw ServiceError.matchNotFound;
-    await this._matchModel.updateGoals(id, goals);
+    await this._matchModel.updateGoals(matchId, goals);
   };
 }
+
+export default MatchService;
