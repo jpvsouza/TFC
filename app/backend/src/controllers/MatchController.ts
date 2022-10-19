@@ -1,9 +1,9 @@
 import { RequestHandler } from 'express';
 import { MatchAttributes } from '../@types';
 import MatchDTO from '../dtos/MatchDTO';
-import MatchService from '../services/Match';
+import MatchService from '../services/MatchService';
 
-class MatchController {
+export default class MatchController {
   private _service = new MatchService();
 
   public getAll: RequestHandler = async (req, res) => {
@@ -32,5 +32,3 @@ class MatchController {
     res.status(200).json({ message: 'Updated' });
   };
 }
-
-export default MatchController;

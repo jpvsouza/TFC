@@ -1,12 +1,10 @@
 import ExpressError from './ExpressError';
 
-class ValidationError extends ExpressError {
-  public static readonly tokenNotFound = new ValidationError(401, 'Token not found');
-  public static readonly invalidToken = new ValidationError(401, 'Token must be a valid token');
-
+export default class ValidationError extends ExpressError {
   constructor(statusCode: number, message: string) {
     super(statusCode, message, 'Validation Error');
   }
-}
 
-export default ValidationError;
+  public static readonly tokenNotFound = new ValidationError(401, 'Token not found');
+  public static readonly invalidToken = new ValidationError(401, 'Token must be a valid token');
+}

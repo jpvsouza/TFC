@@ -1,6 +1,6 @@
 import { ValidationError } from 'joi';
 
-class ExpressError extends Error {
+export default class ExpressError extends Error {
   protected _statusCode: number;
 
   constructor(statusCode: number, message: string, name?: string) {
@@ -16,5 +16,3 @@ class ExpressError extends Error {
     return new ExpressError(Number(code), message);
   }
 }
-
-export default ExpressError;

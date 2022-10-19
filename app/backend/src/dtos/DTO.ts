@@ -1,7 +1,7 @@
 import { ObjectSchema } from 'joi';
 import ValidationError from '../errors/ValitationError';
 
-abstract class DTO<T> {
+export default abstract class DTO<T> {
   private _attributes: T;
   private _validationSchema: ObjectSchema;
 
@@ -21,5 +21,3 @@ abstract class DTO<T> {
     return { ...this._attributes };
   }
 }
-
-export default DTO;

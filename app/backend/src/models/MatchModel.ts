@@ -2,7 +2,7 @@ import { MatchAttributes, MatchGoalsAttributes } from '../@types';
 import Match from '../database/models/Match';
 import { matchIncludeTeams } from './FindOptions';
 
-class MatchModel {
+export default class MatchModel {
   private _sequelizeModel = Match;
 
   public getAll = async (): Promise<Match[]> => this._sequelizeModel.findAll(matchIncludeTeams);
@@ -30,5 +30,3 @@ class MatchModel {
       } },
     );
 }
-
-export default MatchModel;

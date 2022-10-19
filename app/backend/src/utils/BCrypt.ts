@@ -1,6 +1,6 @@
 import { hashSync, compareSync } from 'bcryptjs';
 
-export default class BCrypt {
+class BCrypt {
   private static salt = 10;
 
   public static encrypt(password: string): string {
@@ -11,3 +11,5 @@ export default class BCrypt {
     return compareSync(password, hash);
   }
 }
+
+export default BCrypt;

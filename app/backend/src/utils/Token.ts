@@ -1,22 +1,28 @@
 import { sign, verify, SignOptions } from 'jsonwebtoken';
-import * as jwt from 'jsonwebtoken';
-import IUserJWT from './IUserJWT';
 
-export default class Token {
+class Token {
   private static secret = process.env.JWT_SECRET as string;
 
-  private static option: SignOptions = { algorithm: 'HS256', expiresIn: '7d' };
+  private static options: SignOptions = {
+    algorithm: 'HS256',
+    expiresIn: '7d',
+  };
 
   public static create(userId: number) {
-    return sign({ userId }, this.secret, this.option);
+    return sign({ id: userId }, this.secret, this.options);
   }
 
   public static validate(token: string) {
     return verify(token, this.secret);
   }
 
-  public static decodeUser = (token: string) => {
-    const { user } = jwt.verify(token, this.secret) as IUserJWT;
-    return user;
-  };
+  public static createMock(id: number) {
+    return sign({ id }, 'super_secret', { algorithm: 'HS256', expiresIn: '10s' });
+  }
+
+  public static validateMock(token: string) {
+    return verify(token, 'super_secret');
+  }
 }
+
+export default Token;

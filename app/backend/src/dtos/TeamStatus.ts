@@ -1,4 +1,4 @@
-import { LeaderBoardProperties } from '../@types';
+import { LeaderboardProperties } from '../@types';
 import Team from '../database/models/Team';
 import Match from '../database/models/Match';
 
@@ -15,10 +15,10 @@ export default class TeamStatus {
 
   constructor(team: Team, finishedMatches: Match[]) {
     this._team = team;
+    this._playedMatches = finishedMatches.filter((match) =>
+      match.homeTeam === team.id || match.awayTeam === team.id);
 
-    this._playedMatches = finishedMatches.filter(
-      (match) => match.homeTeam === team.id || match.awayTeam === team.id,
-    );
+    this._playedMatches.forEach(this.getIndividualMatchResult);
 
     this.getTotalGoals();
 
@@ -37,15 +37,14 @@ export default class TeamStatus {
     else this._draws += 1;
   };
 
-  private getTotalGoals = (): void =>
-    this._playedMatches.forEach((match) => {
-      const { id } = this._team;
-      const { homeTeam, homeTeamGoals, awayTeamGoals } = match;
-      this._goalsFavor += homeTeam === id ? homeTeamGoals : awayTeamGoals;
-      this._goalsOwn += homeTeam === id ? awayTeamGoals : homeTeamGoals;
-    });
+  private getTotalGoals = (): void => this._playedMatches.forEach((match) => {
+    const { id } = this._team;
+    const { homeTeam, homeTeamGoals, awayTeamGoals } = match;
+    this._goalsFavor += homeTeam === id ? homeTeamGoals : awayTeamGoals;
+    this._goalsOwn += homeTeam === id ? awayTeamGoals : homeTeamGoals;
+  });
 
-  public getCalculatedStatus = (): LeaderBoardProperties => ({
+  public getCalculatedStatus = (): LeaderboardProperties => ({
     name: this._team.teamName,
     totalPoints: this._totalPoints,
     totalGames: this._totalGames,

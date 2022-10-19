@@ -2,6 +2,14 @@ export type ModelAttributes = {
   id: number;
 };
 
+export type JwtPayload = {
+  id: string;
+};
+
+export type TeamAttributes = ModelAttributes & {
+  teamName: string;
+};
+
 export type LoginAttributes = {
   email: string;
   password: string;
@@ -10,10 +18,6 @@ export type LoginAttributes = {
 export type UserAttributes = ModelAttributes & LoginAttributes & {
   username: string;
   role: string;
-};
-
-export type TeamAttributes = ModelAttributes & {
-  teamName: string;
 };
 
 export type MatchGoalsAttributes = {
@@ -25,10 +29,6 @@ export type MatchAttributes = ModelAttributes & MatchGoalsAttributes & {
   homeTeam: number;
   awayTeam: number;
   inProgress: number;
-};
-
-export type JwtPayload = {
-  id: string;
 };
 
 export type LeaderboardProperties = {

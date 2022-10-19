@@ -5,7 +5,7 @@ import Match from '../database/models/Match';
 import MatchModel from '../models/MatchModel';
 import TeamModel from '../models/TeamModel';
 
-class MatchService {
+export default class MatchService {
   private _matchModel = new MatchModel();
   private _teamModel = new TeamModel();
 
@@ -37,5 +37,3 @@ class MatchService {
     await this._matchModel.updateGoals(matchId, goals);
   };
 }
-
-export default MatchService;

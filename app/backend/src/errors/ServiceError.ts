@@ -1,6 +1,10 @@
 import ExpressError from './ExpressError';
 
-class ServiceError extends ExpressError {
+export default class ServiceError extends ExpressError {
+  constructor(statusCode: number, message: string) {
+    super(statusCode, message, 'Service Error');
+  }
+
   public static readonly incorrectLogin = new ServiceError(401, 'Incorrect email or password');
 
   public static readonly userNotFound = new ServiceError(404, 'User not found');
@@ -13,10 +17,4 @@ class ServiceError extends ExpressError {
     401,
     'It is not possible to create a match with two equal teams',
   );
-
-  constructor(statusCode: number, message: string) {
-    super(statusCode, message, 'Service Error');
-  }
 }
-
-export default ServiceError;

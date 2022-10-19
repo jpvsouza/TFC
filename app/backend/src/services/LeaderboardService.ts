@@ -2,7 +2,7 @@ import TeamStatus from '../dtos/TeamStatus';
 import MatchModel from '../models/MatchModel';
 import TeamModel from '../models/TeamModel';
 
-class LeaderboardService {
+export default class LeaderboardService {
   private _teamModel = new TeamModel();
   private _matchModel = new MatchModel();
 
@@ -40,5 +40,3 @@ class LeaderboardService {
       ));
   };
 }
-
-export default LeaderboardService;
